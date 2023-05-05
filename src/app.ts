@@ -1,6 +1,7 @@
 import 'express-async-errors';
 import express from 'express';
 import { errorHandler } from './errors';
+import { imageRouter, userRouter } from './router';
 
 const app = express();
 
@@ -13,6 +14,9 @@ app.use((req, res, next) => {
 
   next();
 });
+
+app.use('/users', userRouter);
+app.use('/images', imageRouter);
 
 app.use(errorHandler);
 

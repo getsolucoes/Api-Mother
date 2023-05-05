@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model User{
+    id String @id @default(uuid())
+    fullName String @db.VarChar(200)
+    whatsApp String @db.VarChar(20)
+    history String @db.Text()
+    image Image?
+
+    @@map("users")
+}
+
+model Image{
+    id String @id @default(uuid())
+    name String @db.VarChar(200)
+    size Int @db.Int()
+    url String @db.Text()
+    key String @unique @db.VarChar(200)
+    user User? @relation(fields: [user_id], references: [id], onDelete: Cascade)
+    user_id String? @unique
+
+    @@map("images")
+}
