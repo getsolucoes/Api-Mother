@@ -1,5 +1,9 @@
 import { Router } from 'express';
-import { createUserController, listUserController } from '../controllers';
+import {
+  createUserController,
+  deleteUserController,
+  listUserController,
+} from '../controllers';
 import { validateSchemaMiddleware } from '../middlewares';
 import { UserCreateSchema } from '../schemas';
 
@@ -12,3 +16,5 @@ userRouter.post(
 );
 
 userRouter.get('', listUserController);
+
+userRouter.delete('', deleteUserController);

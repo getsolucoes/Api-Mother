@@ -15,7 +15,7 @@ if (process.env.APP_URL) {
   }
 }
 
-const fileSize = 2 * 1024 * 1024;
+const fileSize = 5 * 1024 * 1024;
 
 const storage = process.env.APP_URL
   ? multer.diskStorage({
