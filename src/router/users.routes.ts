@@ -17,4 +17,4 @@ userRouter.post(
 
 userRouter.get('', listUserController);
 
-userRouter.delete('', deleteUserController);
+userRouter.delete('/:id', deleteUserController);
