@@ -3,6 +3,7 @@ import {
   createAdminService,
   listAdminService,
   loginAdminService,
+  retrieveAdminService,
 } from '../services';
 
 export const createAdminController = async (req: Request, res: Response) => {
@@ -13,6 +14,11 @@ export const createAdminController = async (req: Request, res: Response) => {
 export const listAdminController = async (req: Request, res: Response) => {
   const admin = await listAdminService();
   return res.json(admin);
+};
+
+export const profileAdminController = async (req: Request, res: Response) => {
+  const user = await retrieveAdminService(req.admin.id);
+  return res.json(user);
 };
 
 export const loginAdminController = async (req: Request, res: Response) => {

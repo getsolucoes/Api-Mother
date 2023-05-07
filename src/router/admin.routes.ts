@@ -3,6 +3,7 @@ import {
   createAdminController,
   listAdminController,
   loginAdminController,
+  profileAdminController,
 } from '../controllers';
 import {
   validateSchemaMiddleware,
@@ -19,6 +20,8 @@ adminRouter.post(
 );
 
 adminRouter.get('', verifyUserIsAuthenticated, listAdminController);
+
+adminRouter.get('/profile', verifyUserIsAuthenticated, profileAdminController);
 
 export const sessionRouter = Router();
 

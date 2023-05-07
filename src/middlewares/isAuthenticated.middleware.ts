@@ -19,6 +19,10 @@ export const verifyUserIsAuthenticated = (
     if (error) {
       throw new AppError(error.message, 400);
     }
+
+    req.admin = {
+      id: decoded.sub,
+    };
   });
 
   return next();
