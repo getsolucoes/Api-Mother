@@ -2,7 +2,6 @@ import prisma from '../../prisma';
 import { IAdminRequest } from '../../interfaces';
 import { hashSync } from 'bcryptjs';
 import { AppError } from '../../errors';
-import { AdminReturnSchema } from '../../schemas';
 
 export const createAdminService = async ({
   username,
@@ -25,5 +24,5 @@ export const createAdminService = async ({
     },
   });
 
-  return AdminReturnSchema.parse(admin);
+  return admin;
 };

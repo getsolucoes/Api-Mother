@@ -17,6 +17,7 @@ model User{
     whatsApp String @db.VarChar(20)
     history String @db.Text()
     image Image?
+    favorites_in Favorite[]
 
     @@map("users")
 }
@@ -37,6 +38,19 @@ model Admin{
     id String @id @default(uuid())
     username String @db.VarChar(200) @unique
     password String @db.VarChar(128)
+    favorites Favorite[]
 
     @@map("admin")
+}
+
+model Favorite{
+  id String @id @default(uuid())
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  user_id String
+  admin Admin @relation(fields: [admin_id], references: [id], onDelete: Cascade)
+  admin_id String
+
+  @@map("favorites")
+  @@index([user_id])
+  @@index([admin_id])
 }
