@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import {
   createAdminService,
   listAdminService,
+  listFavoritesAdminService,
   loginAdminService,
   retrieveAdminService,
 } from '../services';
@@ -14,6 +15,14 @@ export const createAdminController = async (req: Request, res: Response) => {
 export const listAdminController = async (req: Request, res: Response) => {
   const admin = await listAdminService();
   return res.json(admin);
+};
+
+export const listFavoritesAdminController = async (
+  req: Request,
+  res: Response,
+) => {
+  const favorites = await listFavoritesAdminService(req.admin.id);
+  return res.json(favorites);
 };
 
 export const profileAdminController = async (req: Request, res: Response) => {

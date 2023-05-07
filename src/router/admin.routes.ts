@@ -2,6 +2,7 @@ import { Router } from 'express';
 import {
   createAdminController,
   listAdminController,
+  listFavoritesAdminController,
   loginAdminController,
   profileAdminController,
 } from '../controllers';
@@ -20,6 +21,12 @@ adminRouter.post(
 );
 
 adminRouter.get('', verifyUserIsAuthenticated, listAdminController);
+
+adminRouter.get(
+  '/favorites',
+  verifyUserIsAuthenticated,
+  listFavoritesAdminController,
+);
 
 adminRouter.get('/profile', verifyUserIsAuthenticated, profileAdminController);
 
