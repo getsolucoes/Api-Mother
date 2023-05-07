@@ -1,7 +1,7 @@
 import 'express-async-errors';
 import express from 'express';
 import { errorHandler } from './errors';
-import { imageRouter, userRouter } from './router';
+import { adminRouter, imageRouter, sessionRouter, userRouter } from './router';
 
 const app = express();
 
@@ -15,6 +15,8 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/admin', adminRouter);
+app.use('/login', sessionRouter);
 app.use('/users', userRouter);
 app.use('/images', imageRouter);
 

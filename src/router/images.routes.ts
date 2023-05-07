@@ -4,8 +4,4 @@ import { createImageController } from '../controllers';
 
 export const imageRouter = Router();
 
-imageRouter.post(
-  '/:id',
-  upload.single('image'),
-  createImageController,
-);
+imageRouter.post('/:id', upload.single('image'), createImageController);

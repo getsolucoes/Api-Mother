@@ -4,7 +4,10 @@ import {
   deleteUserController,
   listUserController,
 } from '../controllers';
-import { validateSchemaMiddleware } from '../middlewares';
+import {
+  validateSchemaMiddleware,
+  verifyUserIsAuthenticated,
+} from '../middlewares';
 import { UserCreateSchema } from '../schemas';
 
 export const userRouter = Router();
@@ -15,6 +18,6 @@ userRouter.post(
   createUserController,
 );
 
-userRouter.get('', listUserController);
+userRouter.get('', verifyUserIsAuthenticated, listUserController);
 
-userRouter.delete('/:id', deleteUserController);
+userRouter.delete('/:id', verifyUserIsAuthenticated, deleteUserController);
